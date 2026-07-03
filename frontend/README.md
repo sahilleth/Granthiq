@@ -12,7 +12,7 @@
 
 Next.js 14 application with TypeScript, Tailwind CSS, and shadcn/ui for the Granthiq AI research assistant.
 
-[Backend Repo](https://github.com/MohitGoyal09/Granthiq-backend) • [Features](#features) • [Architecture](#%EF%B8%8F-architecture) • [Tech Stack](#tech-stack) • [Quick Start](#quick-start) • [Documentation](#documentation) • [Deployment](#deployment)
+[Backend](../backend) • [Features](#features) • [Architecture](#%EF%B8%8F-architecture) • [Tech Stack](#tech-stack) • [Quick Start](#quick-start) • [Documentation](#documentation) • [Deployment](#deployment)
 
 </div>
 
@@ -29,7 +29,7 @@ Built for production with server-side rendering, real-time streaming, and enterp
 ## 🏛️ Architecture
 
 <p align="center">
-  <img src="public/architecture.png" alt="Granthiq Frontend Architecture" width="900">
+  <img src="public/architecture.svg" alt="Granthiq System Architecture" width="900">
 </p>
 
 The frontend follows a **layered architecture** with clear separation of concerns:

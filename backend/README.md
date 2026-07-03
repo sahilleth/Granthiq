@@ -12,7 +12,7 @@
 
 FastAPI application with Supabase, LangChain, and AI integrations for the Granthiq AI research assistant.
 
-[Frontend Repo](https://github.com/MohitGoyal09/Granthiq) • [Features](#features) • [Tech Stack](#tech-stack) • [Quick Start](#quick-start) • [Deployment](#deployment)
+[Frontend](../frontend) • [Features](#features) • [Tech Stack](#tech-stack) • [Quick Start](#quick-start) • [Deployment](#deployment)
 
 </div>
 
@@ -29,7 +29,7 @@ Built for production with async processing, streaming responses, and enterprise-
 ## 🏛️ Architecture
 
 <p align="center">
-  <img src="docs/architecture.png" alt="Granthiq Architecture" width="900">
+  <img src="docs/architecture.svg" alt="Granthiq System Architecture" width="900">
 </p>
 
 The backend follows a **service-oriented architecture** with a focus on asynchronous processing and reliable document ingestion.

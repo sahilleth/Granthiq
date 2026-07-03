@@ -8,7 +8,7 @@ The frontend is built with **Next.js 14** using the App Router pattern. It follo
 
 ## Architecture Diagram
 
-![Granthiq Frontend Architecture](/architecture.png)
+![Granthiq System Architecture](/architecture.svg)
 
 ### High-Level Architecture
 

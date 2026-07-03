@@ -8,7 +8,7 @@ The Granthiq backend follows a **Service-Oriented Architecture** layered on top 
 
 ## Architecture Diagram
 
-![Granthiq Backend Architecture](architecture.png)
+![Granthiq System Architecture](architecture.svg)
 
 ## Layered Architecture
 
