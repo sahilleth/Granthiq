@@ -1,0 +1,80 @@
+version: '3.8'
+
+services:
+  # --------------------------------------------------------------------------
+  # 1. Reverse Proxy (Caddy) - Automatic HTTPS
+  # --------------------------------------------------------------------------
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - caddy_data:/data
+      - caddy_config:/config
+    command: caddy reverse-proxy --from https://${DOMAIN_NAME} --to http://app:8000
+
+  # --------------------------------------------------------------------------
+  # 2. Application (FastAPI + Worker)
+  # --------------------------------------------------------------------------
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runtime
+    restart: always
+    env_file: .env
+    environment:
+      - ENABLE_EMBEDDED_WORKER=true
+      - QDRANT_URL=http://qdrant:6333
+    volumes:
+      - data_uploads:/app/data/uploads
+      - data_audio:/app/data/audio_output
+      - hf_cache:/app/.cache/huggingface    # Persist downloaded models
+      - fastembed_cache:/app/.cache/fastembed
+    depends_on:
+      db:
+        condition: service_healthy
+      qdrant:
+        condition: service_started
+    # Resources: Uncapped access to host CPU/RAM is default in Docker, which is what we want for VPS
+
+  # --------------------------------------------------------------------------
+  # 3. Database (Postgres)
+  # --------------------------------------------------------------------------
+  db:
+    image: postgres:15-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD must be set}
+      POSTGRES_DB: notebookllm
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # --------------------------------------------------------------------------
+  # 4. Vector DB (Qdrant)
+  # --------------------------------------------------------------------------
+  qdrant:
+    image: qdrant/qdrant:v1.7.4
+    restart: always
+    expose:
+      - "6333"  # Internal only — not exposed to host in production
+    volumes:
+      - qdrant_data:/qdrant/storage
+
+volumes:
+  postgres_data:
+  qdrant_data:
+  caddy_data:
+  caddy_config:
+  data_uploads:
+  data_audio:
+  hf_cache:
+  fastembed_cache:

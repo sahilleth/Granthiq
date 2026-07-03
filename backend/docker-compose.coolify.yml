@@ -1,0 +1,88 @@
+version: '3.8'
+
+services:
+  # --------------------------------------------------------------------------
+  # 1. API Server (FastAPI)
+  # Handles HTTP requests, Chat, and Query Embeddings
+  # --------------------------------------------------------------------------
+  api:
+    image: notebookllm-backend:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runtime
+    restart: always
+    # CRITICAL: Explicit command override - Coolify builds last stage (worker)
+    # so the image CMD defaults to the worker. This forces API mode.
+    command: ["uvicorn", "src.app:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "1"]
+    environment:
+      # CRITICAL: Disable embedded worker
+      - ENABLE_EMBEDDED_WORKER=false
+      - QDRANT_HOST=${QDRANT_HOST}
+      - QDRANT_API_KEY=${QDRANT_API_KEY}
+      - SUPABASE_URL=${SUPABASE_URL}
+      - SUPABASE_KEY=${SUPABASE_KEY}
+      - DATABASE_URL=${DATABASE_URL}
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      # Optimization: Use shared cache
+      - HF_HOME=/app/.cache/huggingface
+    expose:
+      - "8000"
+    deploy:
+      resources:
+        limits:
+          cpus: '2.5'    # Reserve 2.5 cores for API (User-facing priority)
+          memory: 4000M  # 4GB Limit for API
+    volumes:
+      - hf_cache:/app/.cache/huggingface
+      - fastembed_cache:/app/.cache/fastembed
+    healthcheck:
+      test: ["CMD", "python", "-c", "import httpx; httpx.get('http://localhost:8000/api/v1/health/liveness', timeout=5)"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+
+  # --------------------------------------------------------------------------
+  # 2. Background Worker (Procrastinate)
+  # Handles PDF Ingestion, Indexing, and Podcast Generation
+  # --------------------------------------------------------------------------
+  worker:
+    image: notebookllm-backend:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: worker
+    restart: always
+    # Explicit command override to ensure worker mode
+    command: ["python", "-m", "src.services.queue.worker"]
+    environment:
+      - ENABLE_EMBEDDED_WORKER=false
+      - QDRANT_HOST=${QDRANT_HOST}
+      - QDRANT_API_KEY=${QDRANT_API_KEY}
+      - SUPABASE_URL=${SUPABASE_URL}
+      - SUPABASE_KEY=${SUPABASE_KEY}
+      - DATABASE_URL=${DATABASE_URL}
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - HF_HOME=/app/.cache/huggingface
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'    # 2 Cores for Worker (TTS needs CPU)
+          memory: 4096M  # 4GB Limit for Worker (TTS needs RAM)
+    volumes:
+      - hf_cache:/app/.cache/huggingface
+      - fastembed_cache:/app/.cache/fastembed
+    depends_on:
+      - api
+    stop_grace_period: 120s
+    healthcheck:
+      test: ["CMD", "python", "-c", "import httpx; httpx.get('http://localhost:8000/api/v1/health/liveness', timeout=5)"]
+      interval: 60s
+      timeout: 30s
+      retries: 3
+      start_period: 120s
+
+volumes:
+  hf_cache:
+  fastembed_cache:

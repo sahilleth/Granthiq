@@ -1,0 +1,458 @@
+{
+  "test_metadata": {
+    "dataset": "vibrantlabsai/fiqa",
+    "limit": 10,
+    "timestamp": "2026-01-14T16:29:39.030324"
+  },
+  "configurations": [
+    [
+      {
+        "name": "Baseline (Legacy Params)",
+        "description": "Previous production settings (top_k=15)",
+        "config": {
+          "streaming": false,
+          "similarity_top_k": 15,
+          "use_hyde": false,
+          "enable_query_fusion": false
+        }
+      },
+      {
+        "name": "Optimized (New Default)",
+        "description": "New production settings (top_k=20, improved prompts)",
+        "config": {
+          "streaming": false,
+          "similarity_top_k": 20,
+          "use_hyde": false,
+          "enable_query_fusion": true,
+          "fusion_num_queries": 4
+        }
+      },
+      {
+        "name": "Advanced (HyDE)",
+        "description": "Optimized + HyDE (Hypothetical Document Embeddings)",
+        "config": {
+          "streaming": false,
+          "similarity_top_k": 20,
+          "use_hyde": true,
+          "enable_query_fusion": true,
+          "fusion_num_queries": 4
+        }
+      },
+      {
+        "name": "Production Fast HyDE",
+        "description": "Groq-powered HyDE + Compact Synthesis + Reduced Fusion",
+        "config": {
+          "streaming": false,
+          "similarity_top_k": 20,
+          "use_hyde": true,
+          "enable_query_fusion": true,
+          "fusion_num_queries": 3,
+          "reranker_top_n": 10
+        }
+      }
+    ]
+  ],
+  "results": {
+    "Baseline (Legacy Params)": {
+      "scores": {
+        "faithfulness": [
+          0.7,
+          1.0,
+          1.0,
+          0.98,
+          1.0,
+          0.9375,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "answer_relevancy": [
+          0.890797760413793,
+          0.8324188482688549,
+          0.8026461458900503,
+          0.8027945336750942,
+          0.732675251127115,
+          0.8284720255672896,
+          0.8940983170230891,
+          0.8546907136443281,
+          0.8139448016981321,
+          0.8056633819261306
+        ],
+        "context_precision": [
+          0.99999999995,
+          0.9999999999,
+          0.49999999995,
+          0.9999999999,
+          0.0,
+          0.9999999999,
+          0.9999999999,
+          0.0,
+          0.9999999999666667,
+          0.9999999999
+        ],
+        "context_recall": [
+          0.8888888888888888,
+          1.0,
+          1.0,
+          1.0,
+          0.0,
+          0.4444444444444444,
+          1.0,
+          0.0,
+          0.4722222222222222,
+          1.0
+        ]
+      },
+      "aggregate": {
+        "faithfulness": 0.96175,
+        "answer_relevancy": 0.8258201779233877,
+        "context_precision": 0.7499999999366667,
+        "context_recall": 0.6805555555555556
+      },
+      "num_queries": 10,
+      "config": {
+        "name": "Baseline (Legacy Params)",
+        "description": "Previous production settings (top_k=15)",
+        "config": {
+          "streaming": false,
+          "similarity_top_k": 15,
+          "use_hyde": false,
+          "enable_query_fusion": false
+        }
+      },
+      "output_file": "ab_test_baseline_legacy_params_20260114_161319.json"
+    },
+    "Optimized (New Default)": {
+      "scores": {
+        "faithfulness": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          0.6923076923076923,
+          0.9444444444444444
+        ],
+        "answer_relevancy": [
+          0.7608799302956802,
+          0.8324188482688549,
+          0.8165440218000062,
+          0.7744343653126117,
+          0.7489219852408455,
+          0.8159783187106551,
+          0.8687958617793011,
+          0.8548977190452741,
+          0.0,
+          0.8874062624788007
+        ],
+        "context_precision": [
+          0.999999999975,
+          0.9999999999,
+          0.3333333333,
+          0.9999999999,
+          0.0,
+          0.9999999999,
+          0.99999999995,
+          0.0,
+          0.9999999999857143,
+          0.9999999999666667
+        ],
+        "context_recall": [
+          0.8888888888888888,
+          1.0,
+          1.0,
+          1.0,
+          0.0,
+          0.5555555555555556,
+          1.0,
+          0.0,
+          0.4444444444444444,
+          1.0
+        ]
+      },
+      "aggregate": {
+        "faithfulness": 0.9636752136752136,
+        "answer_relevancy": 0.736027731293203,
+        "context_precision": 0.7333333332877381,
+        "context_recall": 0.6888888888888889
+      },
+      "num_queries": 10,
+      "config": {
+        "name": "Optimized (New Default)",
+        "description": "New production settings (top_k=20, improved prompts)",
+        "config": {
+          "streaming": false,
+          "similarity_top_k": 20,
+          "use_hyde": false,
+          "enable_query_fusion": true,
+          "fusion_num_queries": 4
+        }
+      },
+      "output_file": "ab_test_optimized_new_default_20260114_161612.json"
+    },
+    "Advanced (HyDE)": {
+      "scores": {
+        "faithfulness": [
+          0.9,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          0.8,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "answer_relevancy": [
+          0.8924293001904763,
+          0.8324188482688549,
+          0.7953233059700446,
+          0.7740741253167881,
+          0.7318528619396188,
+          0.8589798883315746,
+          0.8940983170230891,
+          0.8334249956321095,
+          0.8275813311351866,
+          0.859113495396857
+        ],
+        "context_precision": [
+          0.999999999975,
+          0.9999999999,
+          0.3333333333,
+          0.9999999999,
+          0.0,
+          0.99999999995,
+          0.99999999995,
+          0.0,
+          0.9999999999857143,
+          0.99999999995
+        ],
+        "context_recall": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          0.0,
+          0.6666666666666666,
+          1.0,
+          0.0,
+          0.4722222222222222,
+          1.0
+        ]
+      },
+      "aggregate": {
+        "faithfulness": 0.97,
+        "answer_relevancy": 0.8299296469204599,
+        "context_precision": 0.7333333332910714,
+        "context_recall": 0.7138888888888889
+      },
+      "num_queries": 10,
+      "config": {
+        "name": "Advanced (HyDE)",
+        "description": "Optimized + HyDE (Hypothetical Document Embeddings)",
+        "config": {
+          "streaming": false,
+          "similarity_top_k": 20,
+          "use_hyde": true,
+          "enable_query_fusion": true,
+          "fusion_num_queries": 4
+        }
+      },
+      "output_file": "ab_test_advanced_hyde_20260114_162101.json"
+    },
+    "Production Fast HyDE": {
+      "scores": {
+        "faithfulness": [
+          1.0,
+          0.5,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "answer_relevancy": [
+          0.8924293001904763,
+          0.8327519504087153,
+          0.7517445031041047,
+          0.7591515858773562,
+          0.7451342972969645,
+          0.870152061753798,
+          0.8940983170230891,
+          0.8546907136443281,
+          0.8467249817399289,
+          0.8953642546677812
+        ],
+        "context_precision": [
+          0.999999999975,
+          0.9999999999,
+          0.49999999995,
+          0.9999999999,
+          0.0,
+          0.9999999999,
+          0.9999999999,
+          0.0,
+          0.99999999998,
+          0.9999999999
+        ],
+        "context_recall": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          0.0,
+          0.5555555555555556,
+          1.0,
+          0.0,
+          0.4444444444444444,
+          1.0
+        ]
+      },
+      "aggregate": {
+        "faithfulness": 0.95,
+        "answer_relevancy": 0.8342241965706542,
+        "context_precision": 0.7499999999405,
+        "context_recall": 0.7
+      },
+      "num_queries": 10,
+      "config": {
+        "name": "Production Fast HyDE",
+        "description": "Groq-powered HyDE + Compact Synthesis + Reduced Fusion",
+        "config": {
+          "streaming": false,
+          "similarity_top_k": 20,
+          "use_hyde": true,
+          "enable_query_fusion": true,
+          "fusion_num_queries": 3,
+          "reranker_top_n": 10
+        }
+      },
+      "output_file": "ab_test_production_fast_hyde_20260114_162516.json"
+    }
+  },
+  "comparison": {
+    "metrics": {
+      "faithfulness": {
+        "Baseline (Legacy Params)": 0.96175,
+        "Optimized (New Default)": 0.9636752136752136,
+        "Advanced (HyDE)": 0.97,
+        "Production Fast HyDE": 0.95
+      },
+      "answer_relevancy": {
+        "Baseline (Legacy Params)": 0.8258201779233877,
+        "Optimized (New Default)": 0.736027731293203,
+        "Advanced (HyDE)": 0.8299296469204599,
+        "Production Fast HyDE": 0.8342241965706542
+      },
+      "context_precision": {
+        "Baseline (Legacy Params)": 0.7499999999366667,
+        "Optimized (New Default)": 0.7333333332877381,
+        "Advanced (HyDE)": 0.7333333332910714,
+        "Production Fast HyDE": 0.7499999999405
+      },
+      "context_recall": {
+        "Baseline (Legacy Params)": 0.6805555555555556,
+        "Optimized (New Default)": 0.6888888888888889,
+        "Advanced (HyDE)": 0.7138888888888889,
+        "Production Fast HyDE": 0.7
+      }
+    },
+    "winner": "Advanced (HyDE)",
+    "improvements": {
+      "Optimized (New Default)": {
+        "faithfulness": {
+          "from": 0.96175,
+          "to": 0.9636752136752136,
+          "delta": 0.0019252136752135884,
+          "percent_change": 0.20017818302194837
+        },
+        "context_recall": {
+          "from": 0.6805555555555556,
+          "to": 0.6888888888888889,
+          "delta": 0.008333333333333304,
+          "percent_change": 1.224489795918363
+        }
+      },
+      "Advanced (HyDE)": {
+        "faithfulness": {
+          "from": 0.96175,
+          "to": 0.97,
+          "delta": 0.00824999999999998,
+          "percent_change": 0.8578112815180639
+        },
+        "answer_relevancy": {
+          "from": 0.8258201779233877,
+          "to": 0.8299296469204599,
+          "delta": 0.004109468997072208,
+          "percent_change": 0.4976227400262733
+        },
+        "context_recall": {
+          "from": 0.6805555555555556,
+          "to": 0.7138888888888889,
+          "delta": 0.033333333333333326,
+          "percent_change": 4.897959183673469
+        }
+      },
+      "Production Fast HyDE": {
+        "answer_relevancy": {
+          "from": 0.8258201779233877,
+          "to": 0.8342241965706542,
+          "delta": 0.008404018647266476,
+          "percent_change": 1.0176572178702719
+        },
+        "context_recall": {
+          "from": 0.6805555555555556,
+          "to": 0.7,
+          "delta": 0.019444444444444375,
+          "percent_change": 2.857142857142847
+        }
+      }
+    },
+    "regressions": {
+      "Optimized (New Default)": {
+        "answer_relevancy": {
+          "from": 0.8258201779233877,
+          "to": 0.736027731293203,
+          "delta": -0.08979244663018471,
+          "percent_change": -10.873123354284866
+        },
+        "context_precision": {
+          "from": 0.7499999999366667,
+          "to": 0.7333333332877381,
+          "delta": -0.016666666648928574,
+          "percent_change": -2.2222222200447974
+        }
+      },
+      "Advanced (HyDE)": {
+        "context_precision": {
+          "from": 0.7499999999366667,
+          "to": 0.7333333332910714,
+          "delta": -0.01666666664559524,
+          "percent_change": -2.222222219600353
+        }
+      },
+      "Production Fast HyDE": {
+        "faithfulness": {
+          "from": 0.96175,
+          "to": 0.95,
+          "delta": -0.011750000000000038,
+          "percent_change": -1.221731219131795
+        }
+      }
+    },
+    "avg_scores": {
+      "Baseline (Legacy Params)": 0.8045314333539024,
+      "Optimized (New Default)": 0.7804812917862609,
+      "Advanced (HyDE)": 0.811787967275105,
+      "Production Fast HyDE": 0.8085560491277886
+    }
+  }
+}

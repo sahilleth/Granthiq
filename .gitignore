@@ -1,0 +1,52 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.claude/
+
+# Environment & secrets (NEVER commit)
+.env
+.env.*
+!.env.example
+*credentials.json
+granthiq-*.json
+*.tokens
+*.secrets
+*cookies*
+*.cookies.txt
+
+# Python (backend)
+__pycache__/
+*.py[oc]
+.venv/
+*.egg-info/
+build/
+dist/
+wheels/
+
+# Node (frontend)
+node_modules/
+.next/
+out/
+/build
+coverage/
+.vercel
+*.tsbuildinfo
+
+# Logs
+*.log
+backend/logs/*
+!backend/logs/.gitkeep
+
+# Debug scripts with tokens
+backend/scripts/debug_token.py
+
+# Local dev data (uploads, generated audio)
+backend/data/uploads/*
+!backend/data/uploads/README.md
+backend/data/audio_output/*

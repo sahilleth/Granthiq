@@ -1,0 +1,49 @@
+name: Deploy Backend
+
+on:
+  push:
+    branches: [ "main" ]
+    paths-ignore:
+      - 'README.md'
+      - 'docs/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy to VPS
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+             # Stop on error
+             set -e
+
+             # 1. Prepare Directory (Assume app root is ~/app-backend)
+             mkdir -p ~/app-backend
+             cd ~/app-backend
+
+             # 2. Initial Clone if missing, else Pull
+             if [ ! -d ".git" ]; then
+               git clone https://github.com/${{ github.repository }} .
+             else
+               git pull origin main
+             fi
+
+             # 3. Write Production ENV file
+             # Write directly to root since this IS the backend repo
+             cat <<EOF > .env
+             ${{ secrets.ENV_FILE_PRODUCTION }}
+             EOF
+
+             # 4. Docker Deployment
+             # Pull latest images (if relying on pre-built) or Build
+             docker compose -f docker-compose.prod.yml down --remove-orphans
+             docker compose -f docker-compose.prod.yml up -d --build
+             
+             # 5. Prune to save space
+             docker system prune -f

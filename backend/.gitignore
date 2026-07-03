@@ -1,0 +1,37 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Environment files (NEVER commit secrets!)
+.env
+.env.*
+.env.production
+.env.local
+.claude
+# Google Cloud Credentials
+*credentials.json
+granthiq-*.json
+
+# Logs
+*.log
+logs/*
+!logs/.gitkeep
+
+# Cookie files (contain sensitive session data)
+*cookies*
+*.cookies.txt
+cookies.txt
+
+# Debug scripts with tokens
+scripts/debug_token.py
+
+# Sensitive data files
+*.tokens
+*.secrets

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif">
+  <defs>
+    <marker id="ah" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#84cc16"/>
+    </marker>
+    <marker id="ahg" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#52525b"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1280" height="720" fill="#0a0a0a"/>
+
+  <text x="40" y="44" font-size="26" font-weight="700">
+    <tspan fill="#a3e635">Granthiq</tspan><tspan fill="#e5e5e5">  &#183;  System Architecture</tspan>
+  </text>
+
+  <text x="40" y="112" font-size="11" letter-spacing="1.5" fill="#6b7280">CLIENTS</text>
+  <text x="40" y="212" font-size="11" letter-spacing="1.5" fill="#6b7280">EDGE</text>
+  <text x="40" y="316" font-size="11" letter-spacing="1.5" fill="#6b7280">SERVICES</text>
+  <text x="40" y="522" font-size="11" letter-spacing="1.5" fill="#6b7280">DATA</text>
+
+  <!-- CLIENTS -->
+  <rect x="120" y="80" width="480" height="64" rx="10" fill="#151515" stroke="#2c2c2c"/>
+  <text x="360" y="108" text-anchor="middle" font-size="16" font-weight="600" fill="#ededed">Web App</text>
+  <text x="360" y="129" text-anchor="middle" font-size="12" fill="#9a9a9a">Next.js &#183; React &#183; Tailwind &#183; shadcn/ui</text>
+
+  <rect x="660" y="80" width="240" height="64" rx="10" fill="#151515" stroke="#2c2c2c"/>
+  <text x="780" y="108" text-anchor="middle" font-size="16" font-weight="600" fill="#ededed">MCP Clients</text>
+  <text x="780" y="129" text-anchor="middle" font-size="12" fill="#9a9a9a">Cursor &#183; Claude Desktop</text>
+
+  <!-- EDGE -->
+  <rect x="120" y="180" width="480" height="60" rx="10" fill="#151515" stroke="#2c2c2c"/>
+  <text x="360" y="205" text-anchor="middle" font-size="16" font-weight="600" fill="#ededed">FastAPI Backend</text>
+  <text x="360" y="225" text-anchor="middle" font-size="12" fill="#9a9a9a">REST /api/v1 &#183; Supabase JWT auth</text>
+
+  <rect x="660" y="180" width="240" height="60" rx="10" fill="#12180a" stroke="#a3e635" stroke-width="1.5"/>
+  <text x="780" y="205" text-anchor="middle" font-size="16" font-weight="600" fill="#a3e635">MCP Server</text>
+  <text x="780" y="225" text-anchor="middle" font-size="12" fill="#9a9a9a">stdio &#8596; REST tools</text>
+
+  <!-- SERVICES -->
+  <rect x="120" y="290" width="180" height="155" rx="10" fill="#151515" stroke="#2c2c2c"/>
+  <text x="134" y="316" font-size="14" font-weight="700" fill="#a3e635">RAG Pipeline</text>
+  <text x="134" y="335" font-size="11" fill="#6b7280">LlamaIndex</text>
+  <text x="134" y="361" font-size="12" fill="#c9c9c9">&#183; HyDE expand</text>
+  <text x="134" y="382" font-size="12" fill="#c9c9c9">&#183; Hybrid search</text>
+  <text x="134" y="403" font-size="12" fill="#c9c9c9">&#183; Cohere rerank</text>
+  <text x="134" y="424" font-size="12" fill="#c9c9c9">&#183; Cite + confidence</text>
+
+  <rect x="316" y="290" width="180" height="155" rx="10" fill="#12180a" stroke="#a3e635" stroke-width="1.5"/>
+  <text x="330" y="316" font-size="14" font-weight="700" fill="#a3e635">Research Agent</text>
+  <text x="330" y="335" font-size="11" fill="#6b7280">agentic mode</text>
+  <text x="330" y="361" font-size="12" fill="#c9c9c9">&#183; Plan</text>
+  <text x="330" y="382" font-size="12" fill="#c9c9c9">&#183; Search &#215;N</text>
+  <text x="330" y="403" font-size="12" fill="#c9c9c9">&#183; Synthesize</text>
+  <text x="330" y="424" font-size="12" fill="#c9c9c9">&#183; Live steps</text>
+
+  <rect x="512" y="290" width="180" height="155" rx="10" fill="#151515" stroke="#2c2c2c"/>
+  <text x="526" y="316" font-size="14" font-weight="700" fill="#a3e635">Content Gen</text>
+  <text x="526" y="335" font-size="11" fill="#6b7280">structured output</text>
+  <text x="526" y="361" font-size="12" fill="#c9c9c9">&#183; Podcast</text>
+  <text x="526" y="382" font-size="12" fill="#c9c9c9">&#183; Quiz &#183; Cards</text>
+  <text x="526" y="403" font-size="12" fill="#c9c9c9">&#183; Mind map</text>
+  <text x="526" y="424" font-size="12" fill="#c9c9c9">&#183; &#8594; Gemini TTS</text>
+
+  <rect x="708" y="290" width="192" height="155" rx="10" fill="#151515" stroke="#2c2c2c"/>
+  <text x="722" y="316" font-size="14" font-weight="700" fill="#a3e635">Background Worker</text>
+  <text x="722" y="335" font-size="11" fill="#6b7280">Procrastinate queue</text>
+  <text x="722" y="361" font-size="12" fill="#c9c9c9">&#183; Extract &#183; chunk</text>
+  <text x="722" y="382" font-size="12" fill="#c9c9c9">&#183; Embed (HuggingFace)</text>
+  <text x="722" y="403" font-size="12" fill="#c9c9c9">&#183; &#8594; Qdrant</text>
+
+  <!-- DATA -->
+  <rect x="120" y="495" width="250" height="64" rx="10" fill="#151515" stroke="#2c2c2c"/>
+  <text x="245" y="521" text-anchor="middle" font-size="15" font-weight="600" fill="#ededed">PostgreSQL</text>
+  <text x="245" y="541" text-anchor="middle" font-size="11" fill="#9a9a9a">Supabase &#183; messages &#183; confidence</text>
+
+  <rect x="386" y="495" width="200" height="64" rx="10" fill="#151515" stroke="#2c2c2c"/>
+  <text x="486" y="521" text-anchor="middle" font-size="15" font-weight="600" fill="#ededed">Qdrant</text>
+  <text x="486" y="541" text-anchor="middle" font-size="11" fill="#9a9a9a">vector embeddings</text>
+
+  <rect x="602" y="495" width="298" height="64" rx="10" fill="#151515" stroke="#2c2c2c"/>
+  <text x="751" y="521" text-anchor="middle" font-size="15" font-weight="600" fill="#ededed">Supabase Storage</text>
+  <text x="751" y="541" text-anchor="middle" font-size="11" fill="#9a9a9a">private &#183; public buckets</text>
+
+  <!-- RIGHT RAIL -->
+  <rect x="1000" y="180" width="240" height="379" rx="10" fill="#101010" stroke="#2c2c2c"/>
+  <text x="1016" y="206" font-size="13" font-weight="700" fill="#a3e635">External AI &#183; Observability</text>
+  <line x1="1016" y1="218" x2="1224" y2="218" stroke="#242424"/>
+
+  <circle cx="1020" cy="245" r="3" fill="#a3e635"/>
+  <text x="1034" y="249" font-size="12.5" fill="#dcdcdc">Gemini &#8212; primary LLM</text>
+  <circle cx="1020" cy="297" r="3" fill="#a3e635"/>
+  <text x="1034" y="301" font-size="12.5" fill="#dcdcdc">Groq &#8212; fast LLM &#183; HyDE</text>
+  <circle cx="1020" cy="349" r="3" fill="#a3e635"/>
+  <text x="1034" y="353" font-size="12.5" fill="#dcdcdc">Cohere &#8212; reranking</text>
+  <circle cx="1020" cy="401" r="3" fill="#a3e635"/>
+  <text x="1034" y="405" font-size="12.5" fill="#dcdcdc">HuggingFace &#8212; embeddings</text>
+  <circle cx="1020" cy="453" r="3" fill="#a3e635"/>
+  <text x="1034" y="457" font-size="12.5" fill="#dcdcdc">Gemini TTS &#8212; podcast audio</text>
+  <circle cx="1020" cy="505" r="3" fill="#a3e635"/>
+  <text x="1034" y="509" font-size="12.5" fill="#dcdcdc">Langfuse &#8212; tracing</text>
+
+  <!-- ARROWS -->
+  <line x1="360" y1="144" x2="360" y2="177" stroke="#84cc16" stroke-width="1.6" marker-end="url(#ah)"/>
+  <line x1="780" y1="144" x2="780" y2="177" stroke="#84cc16" stroke-width="1.6" marker-end="url(#ah)"/>
+  <line x1="659" y1="210" x2="603" y2="210" stroke="#52525b" stroke-width="1.4" marker-end="url(#ahg)"/>
+  <line x1="360" y1="240" x2="360" y2="287" stroke="#84cc16" stroke-width="1.6" marker-end="url(#ah)"/>
+  <line x1="901" y1="360" x2="997" y2="360" stroke="#52525b" stroke-width="1.4" marker-end="url(#ahg)"/>
+  <text x="905" y="352" font-size="10.5" fill="#6b7280">LLM &#183; rerank &#183; TTS</text>
+  <line x1="200" y1="445" x2="235" y2="492" stroke="#52525b" stroke-width="1.4" marker-end="url(#ahg)"/>
+  <line x1="210" y1="445" x2="470" y2="492" stroke="#52525b" stroke-width="1.4" marker-end="url(#ahg)"/>
+  <line x1="804" y1="445" x2="510" y2="492" stroke="#52525b" stroke-width="1.4" marker-end="url(#ahg)"/>
+
+  <!-- LEGEND -->
+  <rect x="120" y="596" width="13" height="13" rx="3" fill="#12180a" stroke="#a3e635" stroke-width="1.5"/>
+  <text x="142" y="607" font-size="12" fill="#9a9a9a">New capabilities: Research Agent &#183; MCP Server &#183; Confidence scoring (persisted per message)</text>
+</svg>

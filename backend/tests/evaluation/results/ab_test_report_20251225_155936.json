@@ -1,0 +1,337 @@
+{
+  "test_metadata": {
+    "dataset": "vibrantlabsai/fiqa",
+    "limit": 10,
+    "timestamp": "2025-12-25T15:59:36.324795"
+  },
+  "configurations": [
+    [
+      {
+        "name": "Baseline (Legacy Params)",
+        "description": "Previous production settings (top_k=15)",
+        "config": {
+          "streaming": false,
+          "similarity_top_k": 15,
+          "use_hyde": false
+        }
+      },
+      {
+        "name": "Optimized (New Default)",
+        "description": "New production settings (top_k=20, improved prompts)",
+        "config": {
+          "streaming": false,
+          "similarity_top_k": 20,
+          "use_hyde": false
+        }
+      },
+      {
+        "name": "Advanced (HyDE)",
+        "description": "Optimized + HyDE (Hypothetical Document Embeddings)",
+        "config": {
+          "streaming": false,
+          "similarity_top_k": 20,
+          "use_hyde": true
+        }
+      }
+    ]
+  ],
+  "results": {
+    "Baseline (Legacy Params)": {
+      "scores": {
+        "faithfulness": [
+          1.0,
+          0.6666666666666666,
+          1.0,
+          0.9130434782608695,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "answer_relevancy": [
+          0.8927716783231077,
+          0.8327519504087153,
+          0.8154750846238971,
+          0.7603027452290864,
+          0.758931830708285,
+          0.8540115093101033,
+          0.8940983170230891,
+          0.8546907136443281,
+          0.8638359307897153,
+          0.8470786112629893
+        ],
+        "context_precision": [
+          0.99999999995,
+          0.99999999995,
+          0.49999999995,
+          0.9999999999,
+          0.0,
+          0.99999999995,
+          0.9999999999,
+          0.1249999999875,
+          0.8611111110895834,
+          0.9999999999666667
+        ],
+        "context_recall": [
+          0.8888888888888888,
+          1.0,
+          1.0,
+          1.0,
+          0.0,
+          0.4444444444444444,
+          1.0,
+          0.0,
+          0.5,
+          1.0
+        ]
+      },
+      "aggregate": {
+        "faithfulness": 0.9579710144927536,
+        "answer_relevancy": 0.8373948371323315,
+        "context_precision": 0.7486111110643751,
+        "context_recall": 0.6833333333333333
+      },
+      "num_queries": 10,
+      "config": {
+        "name": "Baseline (Legacy Params)",
+        "description": "Previous production settings (top_k=15)",
+        "config": {
+          "streaming": false,
+          "similarity_top_k": 15,
+          "use_hyde": false
+        }
+      },
+      "output_file": "ab_test_baseline_legacy_params_20251225_154005.json"
+    },
+    "Optimized (New Default)": {
+      "scores": {
+        "faithfulness": [
+          0.75,
+          0.6666666666666666,
+          0.6666666666666666,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          0.9047619047619048
+        ],
+        "answer_relevancy": [
+          0.8807614924619221,
+          0.8327519504087153,
+          0.0,
+          0.7548199743145435,
+          0.728698951564606,
+          0.8354501573636307,
+          0.8940983170230891,
+          0.8543913440933463,
+          0.8502848603904661,
+          0.8300876843398627
+        ],
+        "context_precision": [
+          0.99999999995,
+          0.99999999995,
+          0.5833333333041666,
+          0.99999999995,
+          0.0,
+          0.99999999995,
+          0.9999999999,
+          0.0,
+          0.8592592592449383,
+          0.8874999999778125
+        ],
+        "context_recall": [
+          0.8888888888888888,
+          1.0,
+          1.0,
+          1.0,
+          0.0,
+          0.6111111111111112,
+          1.0,
+          0.0,
+          0.9444444444444444,
+          1.0
+        ]
+      },
+      "aggregate": {
+        "faithfulness": 0.8988095238095237,
+        "answer_relevancy": 0.7461344731960182,
+        "context_precision": 0.7330092592226917,
+        "context_recall": 0.7444444444444445
+      },
+      "num_queries": 10,
+      "config": {
+        "name": "Optimized (New Default)",
+        "description": "New production settings (top_k=20, improved prompts)",
+        "config": {
+          "streaming": false,
+          "similarity_top_k": 20,
+          "use_hyde": false
+        }
+      },
+      "output_file": "ab_test_optimized_new_default_20251225_154549.json"
+    },
+    "Advanced (HyDE)": {
+      "scores": {
+        "faithfulness": [
+          0.6666666666666666,
+          0.6666666666666666,
+          1.0,
+          0.9333333333333333,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "answer_relevancy": [
+          0.8928635960284197,
+          0.8327519504087153,
+          0.7907808175868728,
+          0.7783464324340557,
+          0.6430615594921298,
+          0.8332938968666204,
+          0.8940983170230891,
+          0.8522015878078086,
+          0.8638359307897153,
+          0.8567729036020237
+        ],
+        "context_precision": [
+          0.99999999995,
+          0.9999999999,
+          0.5833333333041666,
+          0.9999999999,
+          0.0,
+          0.99999999995,
+          0.9999999999,
+          0.0,
+          0.99999999998,
+          0.999999999975
+        ],
+        "context_recall": [
+          0.8888888888888888,
+          1.0,
+          1.0,
+          1.0,
+          0.0,
+          0.5555555555555556,
+          1.0,
+          1.0,
+          0.5,
+          1.0
+        ]
+      },
+      "aggregate": {
+        "faithfulness": 0.9266666666666665,
+        "answer_relevancy": 0.823800699203945,
+        "context_precision": 0.7583333332859167,
+        "context_recall": 0.7944444444444445
+      },
+      "num_queries": 10,
+      "config": {
+        "name": "Advanced (HyDE)",
+        "description": "Optimized + HyDE (Hypothetical Document Embeddings)",
+        "config": {
+          "streaming": false,
+          "similarity_top_k": 20,
+          "use_hyde": true
+        }
+      },
+      "output_file": "ab_test_advanced_hyde_20251225_155140.json"
+    }
+  },
+  "comparison": {
+    "metrics": {
+      "faithfulness": {
+        "Baseline (Legacy Params)": 0.9579710144927536,
+        "Optimized (New Default)": 0.8988095238095237,
+        "Advanced (HyDE)": 0.9266666666666665
+      },
+      "answer_relevancy": {
+        "Baseline (Legacy Params)": 0.8373948371323315,
+        "Optimized (New Default)": 0.7461344731960182,
+        "Advanced (HyDE)": 0.823800699203945
+      },
+      "context_precision": {
+        "Baseline (Legacy Params)": 0.7486111110643751,
+        "Optimized (New Default)": 0.7330092592226917,
+        "Advanced (HyDE)": 0.7583333332859167
+      },
+      "context_recall": {
+        "Baseline (Legacy Params)": 0.6833333333333333,
+        "Optimized (New Default)": 0.7444444444444445,
+        "Advanced (HyDE)": 0.7944444444444445
+      }
+    },
+    "winner": "Advanced (HyDE)",
+    "improvements": {
+      "Optimized (New Default)": {
+        "context_recall": {
+          "from": 0.6833333333333333,
+          "to": 0.7444444444444445,
+          "delta": 0.061111111111111116,
+          "percent_change": 8.94308943089431
+        }
+      },
+      "Advanced (HyDE)": {
+        "context_precision": {
+          "from": 0.7486111110643751,
+          "to": 0.7583333332859167,
+          "delta": 0.009722222221541621,
+          "percent_change": 1.298701298691462
+        },
+        "context_recall": {
+          "from": 0.6833333333333333,
+          "to": 0.7944444444444445,
+          "delta": 0.11111111111111116,
+          "percent_change": 16.260162601626025
+        }
+      }
+    },
+    "regressions": {
+      "Optimized (New Default)": {
+        "faithfulness": {
+          "from": 0.9579710144927536,
+          "to": 0.8988095238095237,
+          "delta": -0.059161490683229845,
+          "percent_change": -6.175707802031558
+        },
+        "answer_relevancy": {
+          "from": 0.8373948371323315,
+          "to": 0.7461344731960182,
+          "delta": -0.09126036393631332,
+          "percent_change": -10.898128324845601
+        },
+        "context_precision": {
+          "from": 0.7486111110643751,
+          "to": 0.7330092592226917,
+          "delta": -0.01560185184168339,
+          "percent_change": -2.084106368592457
+        }
+      },
+      "Advanced (HyDE)": {
+        "faithfulness": {
+          "from": 0.9579710144927536,
+          "to": 0.9266666666666665,
+          "delta": -0.03130434782608704,
+          "percent_change": -3.2677760968230043
+        },
+        "answer_relevancy": {
+          "from": 0.8373948371323315,
+          "to": 0.823800699203945,
+          "delta": -0.013594137928386485,
+          "percent_change": -1.6233844926653442
+        }
+      }
+    },
+    "avg_scores": {
+      "Baseline (Legacy Params)": 0.8068275740056984,
+      "Optimized (New Default)": 0.7805994251681695,
+      "Advanced (HyDE)": 0.8258112859002432
+    }
+  }
+}

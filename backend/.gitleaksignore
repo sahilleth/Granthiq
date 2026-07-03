@@ -1,0 +1,3 @@
+# Gitleaks false positives - documentation placeholder examples
+509cedc4f9e0eae4b0f2e1ae4a2d7f5c56801dd5:docs/SETUP.md:generic-api-key:256
+91a4fa171bb977c130ca451f87891e3322ab8421:docs/QUICK_START_PRODUCTION.md:curl-auth-header:88

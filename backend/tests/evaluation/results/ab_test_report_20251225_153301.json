@@ -1,0 +1,218 @@
+{
+  "test_metadata": {
+    "dataset": "vibrantlabsai/fiqa",
+    "limit": 10,
+    "timestamp": "2025-12-25T15:33:01.518376"
+  },
+  "configurations": [
+    [
+      {
+        "name": "Baseline (Current Settings)",
+        "description": "Current production configuration",
+        "config": {
+          "streaming": false
+        }
+      },
+      {
+        "name": "Optimized (Quick Wins)",
+        "description": "Improved prompts + increased retrieval",
+        "config": {
+          "streaming": false
+        }
+      }
+    ]
+  ],
+  "results": {
+    "Baseline (Current Settings)": {
+      "scores": {
+        "faithfulness": [
+          0.7142857142857143,
+          0.0,
+          0.3333333333333333,
+          0.8947368421052632,
+          1.0,
+          0.0,
+          0.3333333333333333,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "answer_relevancy": [
+          0.8924293001904763,
+          0.0,
+          0.0,
+          0.7603187705022694,
+          0.7494581849497828,
+          0.0,
+          0.8354079298668604,
+          0.8591853331594165,
+          0.8638359307897153,
+          0.8672725092536716
+        ],
+        "context_precision": [
+          0.99999999995,
+          0.99999999995,
+          0.0,
+          0.6666666666333333,
+          0.0,
+          0.0,
+          0.0,
+          0.11111111109999999,
+          0.6428571428357143,
+          0.9999999999666667
+        ],
+        "context_recall": [
+          1.0,
+          1.0,
+          0.0,
+          1.0,
+          0.0,
+          0.05555555555555555,
+          0.75,
+          0.0,
+          0.6111111111111112,
+          1.0
+        ]
+      },
+      "aggregate": {
+        "faithfulness": 0.6275689223057644,
+        "answer_relevancy": 0.5827907958712192,
+        "context_precision": 0.4420634920435714,
+        "context_recall": 0.5416666666666667
+      },
+      "num_queries": 10,
+      "config": {
+        "name": "Baseline (Current Settings)",
+        "description": "Current production configuration",
+        "config": {
+          "streaming": false
+        }
+      },
+      "output_file": "ab_test_baseline_current_settings_20251225_152159.json"
+    },
+    "Optimized (Quick Wins)": {
+      "scores": {
+        "faithfulness": [
+          1.0,
+          0.0,
+          0.0,
+          0.8571428571428571,
+          1.0,
+          1.0,
+          0.5,
+          1.0,
+          0.3333333333333333,
+          1.0
+        ],
+        "answer_relevancy": [
+          0.789891400431447,
+          0.0,
+          0.0,
+          0.7640988427328431,
+          0.7550805701673822,
+          0.8549462150390584,
+          0.8940983170230891,
+          0.8532413080077964,
+          0.0,
+          0.8632486938456047
+        ],
+        "context_precision": [
+          0.99999999995,
+          0.99999999995,
+          0.0,
+          0.9999999999,
+          0.0,
+          0.99999999995,
+          0.9999999999,
+          0.0,
+          0.8541666666453125,
+          0.9999999999666667
+        ],
+        "context_recall": [
+          0.8888888888888888,
+          1.0,
+          0.1,
+          1.0,
+          0.6666666666666666,
+          0.5555555555555556,
+          1.0,
+          0.0,
+          0.9722222222222222,
+          1.0
+        ]
+      },
+      "aggregate": {
+        "faithfulness": 0.6690476190476191,
+        "answer_relevancy": 0.577460534724722,
+        "context_precision": 0.6854166666261979,
+        "context_recall": 0.7183333333333334
+      },
+      "num_queries": 10,
+      "config": {
+        "name": "Optimized (Quick Wins)",
+        "description": "Improved prompts + increased retrieval",
+        "config": {
+          "streaming": false
+        }
+      },
+      "output_file": "ab_test_optimized_quick_wins_20251225_152734.json"
+    }
+  },
+  "comparison": {
+    "metrics": {
+      "faithfulness": {
+        "Baseline (Current Settings)": 0.6275689223057644,
+        "Optimized (Quick Wins)": 0.6690476190476191
+      },
+      "answer_relevancy": {
+        "Baseline (Current Settings)": 0.5827907958712192,
+        "Optimized (Quick Wins)": 0.577460534724722
+      },
+      "context_precision": {
+        "Baseline (Current Settings)": 0.4420634920435714,
+        "Optimized (Quick Wins)": 0.6854166666261979
+      },
+      "context_recall": {
+        "Baseline (Current Settings)": 0.5416666666666667,
+        "Optimized (Quick Wins)": 0.7183333333333334
+      }
+    },
+    "winner": "Optimized (Quick Wins)",
+    "improvements": {
+      "Optimized (Quick Wins)": {
+        "faithfulness": {
+          "from": 0.6275689223057644,
+          "to": 0.6690476190476191,
+          "delta": 0.04147869674185467,
+          "percent_change": 6.6094249201278
+        },
+        "context_precision": {
+          "from": 0.4420634920435714,
+          "to": 0.6854166666261979,
+          "delta": 0.2433531745826265,
+          "percent_change": 55.0493716315847
+        },
+        "context_recall": {
+          "from": 0.5416666666666667,
+          "to": 0.7183333333333334,
+          "delta": 0.17666666666666664,
+          "percent_change": 32.615384615384606
+        }
+      }
+    },
+    "regressions": {
+      "Optimized (Quick Wins)": {
+        "answer_relevancy": {
+          "from": 0.5827907958712192,
+          "to": 0.577460534724722,
+          "delta": -0.0053302611464971505,
+          "percent_change": -0.914609699442644
+        }
+      }
+    },
+    "avg_scores": {
+      "Baseline (Current Settings)": 0.5485224692218055,
+      "Optimized (Quick Wins)": 0.6625645384329681
+    }
+  }
+}

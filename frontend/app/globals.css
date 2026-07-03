@@ -1,0 +1,337 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "../styles/brand.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@keyframes spin-around {
+  0% {
+    transform: translateZ(0) rotate(0);
+  }
+  15%, 35% {
+    transform: translateZ(0) rotate(90deg);
+  }
+  65%, 85% {
+    transform: translateZ(0) rotate(270deg);
+  }
+  100% {
+    transform: translateZ(0) rotate(360deg);
+  }
+}
+
+@keyframes slide {
+  to {
+    transform: translate(calc(100cqw - 100%), 0);
+  }
+}
+
+/* ============================================================================
+   GRANTHIQ - Global Styles with Brand Integration
+   ============================================================================ */
+
+@theme inline {
+  /* Typography - Using distinctive fonts */
+  --font-display: var(--font-display, "DM Serif Display", "Georgia", serif);
+  --font-sans: var(--font-sans, "Plus Jakarta Sans", "Inter", system-ui, sans-serif);
+  --font-mono: var(--font-mono, "JetBrains Mono", "Fira Code", monospace);
+
+  /* Colors - Integrated from brand system */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Chart colors from brand system */
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  /* Radius system */
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+  --radius-2xl: var(--radius-2xl);
+
+  /* Surface hierarchy */
+  --color-surface-0: var(--surface-0);
+  --color-surface-1: var(--surface-1);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-surface-4: var(--surface-4);
+
+  /* Border emphasis */
+  --color-border-emphasis: var(--border-emphasis);
+
+  /* Sidebar */
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Brand colors as Tailwind utilities */
+  --color-synapse-50: var(--synapse-50);
+  --color-synapse-100: var(--synapse-100);
+  --color-synapse-200: var(--synapse-200);
+  --color-synapse-300: var(--synapse-300);
+  --color-synapse-400: var(--synapse-400);
+  --color-synapse-500: var(--synapse-500);
+  --color-synapse-600: var(--synapse-600);
+  --color-synapse-700: var(--synapse-700);
+  --color-synapse-800: var(--synapse-800);
+  --color-synapse-900: var(--synapse-900);
+  --color-synapse-950: var(--synapse-950);
+
+  --color-cognition-50: var(--cognition-50);
+  --color-cognition-100: var(--cognition-100);
+  --color-cognition-200: var(--cognition-200);
+  --color-cognition-300: var(--cognition-300);
+  --color-cognition-400: var(--cognition-400);
+  --color-cognition-500: var(--cognition-500);
+  --color-cognition-600: var(--cognition-600);
+  --color-cognition-700: var(--cognition-700);
+  --color-cognition-800: var(--cognition-800);
+  --color-cognition-900: var(--cognition-900);
+  --color-cognition-950: var(--cognition-950);
+
+  --color-neural-50: var(--neural-50);
+  --color-neural-100: var(--neural-100);
+  --color-neural-200: var(--neural-200);
+  --color-neural-300: var(--neural-300);
+  --color-neural-400: var(--neural-400);
+  --color-neural-500: var(--neural-500);
+  --color-neural-600: var(--neural-600);
+  --color-neural-700: var(--neural-700);
+  --color-neural-800: var(--neural-800);
+  --color-neural-900: var(--neural-900);
+  --color-neural-950: var(--neural-950);
+
+  --color-insight-50: var(--insight-50);
+  --color-insight-100: var(--insight-100);
+  --color-insight-200: var(--insight-200);
+  --color-insight-300: var(--insight-300);
+  --color-insight-400: var(--insight-400);
+  --color-insight-500: var(--insight-500);
+  --color-insight-600: var(--insight-600);
+  --color-insight-700: var(--insight-700);
+  --color-insight-800: var(--insight-800);
+  --color-insight-900: var(--insight-900);
+  --color-insight-950: var(--insight-950);
+
+  --color-success-50: var(--success-50);
+  --color-success-100: var(--success-100);
+  --color-success-200: var(--success-200);
+  --color-success-300: var(--success-300);
+  --color-success-400: var(--success-400);
+  --color-success-500: var(--success-500);
+  --color-success-600: var(--success-600);
+  --color-success-700: var(--success-700);
+  --color-success-800: var(--success-800);
+  --color-success-900: var(--success-900);
+
+  /* Shadow system - maps to brand.css shadows */
+  --shadow-xs: var(--shadow-xs);
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+  --shadow-xl: var(--shadow-xl);
+  --shadow-2xl: var(--shadow-2xl);
+  --shadow-inset: var(--shadow-inset);
+  --shadow-primary: var(--shadow-primary);
+  --shadow-primary-lg: var(--shadow-primary-lg);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  button {
+    cursor: pointer;
+  }
+}
+
+/* Custom scrollbar with brand warmth - adapts to light/dark */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--muted-foreground);
+  border-radius: 3px;
+  opacity: 0.5;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--synapse-600);
+}
+
+/* TipTap Editor List Styles */
+.ProseMirror ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+}
+
+.ProseMirror ol {
+  list-style-type: decimal;
+  padding-left: 1.5rem;
+}
+
+.ProseMirror ul li,
+.ProseMirror ol li {
+  padding-left: 0.25rem;
+}
+
+.ProseMirror ul li::marker {
+  color: currentColor;
+}
+
+.ProseMirror ol li::marker {
+  color: currentColor;
+}
+
+/* ============================================================================
+   ACCESSIBILITY - Reduced Motion, Focus, High Contrast
+   ============================================================================ */
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Focus visible for keyboard navigation */
+*:focus-visible {
+  outline: none;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: more) {
+  :root {
+    --border-opacity: 1;
+    --text-opacity: 1;
+  }
+
+  .border-synapse-500\/20,
+  .border-primary\/20,
+  .border-border\/50,
+  .border-border\/40,
+  .border-border\/30 {
+    border-color: oklch(0.78 0.22 132 / 0.8);
+  }
+
+  .text-neutral-400,
+  .text-muted-foreground {
+    color: oklch(0.8 0 0);
+  }
+
+  /* Ensure adequate contrast on buttons */
+  .bg-primary {
+    background-color: oklch(0.78 0.22 132);
+  }
+}
+
+/* ============================================================================
+   SKIP LINK - Accessibility Navigation
+   ============================================================================ */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--primary);
+  color: var(--primary-foreground);
+  padding: 8px 16px;
+  z-index: 100;
+  text-decoration: none;
+  font-weight: 500;
+  border-radius: 0 0 var(--radius-md) 0;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* ============================================================================
+   PERFORMANCE OPTIMIZATION - GPU Acceleration Hints
+   ============================================================================ */
+
+/*
+ * PERFORMANCE NOTES FOR DEVELOPERS:
+ *
+ * 1. Canvas animations should use requestAnimationFrame with proper cleanup:
+ *    - Store the animation frame ID
+ *    - Cancel on unmount: cancelAnimationFrame(animationFrameId)
+ *    - Check if component is still mounted before updating state
+ *
+ * 2. Neural network/visualization components should only render when in viewport:
+ *    - Use IntersectionObserver to detect visibility
+ *    - Pause animations when not visible
+ *    - Consider using react-intersection-observer library
+ *
+ * 3. Debounce scroll listeners with 100ms delay:
+ *    - Use lodash.debounce or custom debounce utility
+ *    - Always cleanup event listeners on unmount
+ *    - Example: const debouncedHandler = debounce(handler, 100)
+ *
+ * 4. Lazy load images below the fold:
+ *    - Use loading="lazy" attribute on <img> elements
+ *    - Use Next.js Image component with priority={false} for below-fold images
+ */
+
+/* Add will-change to animated gradient elements for GPU acceleration */
+.animate-synapse-glow,
+.animate-synapse-pulse,
+.animate-shimmer,
+.animate-float {
+  will-change: transform, filter, opacity;
+}
+
+/* Animated backgrounds should use GPU */
+.bg-gradient-animated,
+[style*="radial-gradient"] {
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Reserve space for fonts to prevent layout shift */
+body {
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
