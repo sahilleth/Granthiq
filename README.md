@@ -14,12 +14,12 @@
   [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-  [Features](#-features) ·
-  [Architecture](#-architecture) ·
-  [How It Works](#-how-it-works) ·
-  [Quick Start](#-quick-start) ·
-  [Documentation](#-documentation) ·
-  [Deployment](#-deployment)
+  [Features](#features) ·
+  [Architecture](#architecture) ·
+  [How It Works](#how-it-works) ·
+  [Quick Start](#quick-start) ·
+  [Documentation](#documentation) ·
+  [Deployment](#deployment)
 
 </div>
 
