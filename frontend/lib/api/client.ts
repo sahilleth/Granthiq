@@ -11,16 +11,29 @@ import {
 
 const getBaseUrl = () => {
   let url = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
-  if (!url.startsWith("http://") && !url.startsWith("https://")) {
-    url = `https://${url}`;
-  }
+  url = url.trim();
   if (url.endsWith("/")) {
     url = url.slice(0, -1);
+  }
+
+  // Same-origin path for Vercel Services (e.g. NEXT_PUBLIC_API_URL=/api/backend)
+  if (url.startsWith("/")) {
+    if (typeof window !== "undefined") {
+      return `${window.location.origin}${url}`;
+    }
+    const vercelUrl = process.env.VERCEL_URL;
+    if (vercelUrl) {
+      return `https://${vercelUrl}${url}`;
+    }
+    return url;
+  }
+
+  if (!url.startsWith("http://") && !url.startsWith("https://")) {
+    url = `https://${url}`;
   }
   return url;
 };
 
-const API_BASE_URL = getBaseUrl();
 const DEFAULT_TIMEOUT_MS = 30000; // 30 seconds
 const DEFAULT_MAX_RETRIES = 3; // Maximum retry attempts for rate limited requests
 
@@ -148,7 +161,7 @@ export async function apiClient<T>(
     const { controller, timeoutId } = createTimeoutController(timeoutMs);
 
     try {
-      const response = await fetch(`${API_BASE_URL}/api/v1${endpoint}`, {
+      const response = await fetch(`${getBaseUrl()}/api/v1${endpoint}`, {
         ...fetchOptions,
         headers: { ...headers, ...fetchOptions.headers },
         signal: controller.signal,
@@ -258,7 +271,7 @@ export async function apiUpload<T>(
     const { controller, timeoutId } = createTimeoutController(timeoutMs);
 
     try {
-      const response = await fetch(`${API_BASE_URL}/api/v1${endpoint}`, {
+      const response = await fetch(`${getBaseUrl()}/api/v1${endpoint}`, {
         method: "POST",
         headers: { Authorization: `Bearer ${session.access_token}` },
         body: formData,
@@ -355,7 +368,7 @@ export async function getStreamingHeaders(): Promise<HeadersInit> {
 }
 
 export function getApiBaseUrl(): string {
-  return API_BASE_URL;
+  return getBaseUrl();
 }
 
 // Re-export rate limit utilities for convenience

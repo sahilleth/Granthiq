@@ -374,6 +374,39 @@ The frontend includes a built-in documentation site at `/docs` when running loca
 
 ## Deployment
 
+### Vercel (Frontend + Backend together)
+
+This repo includes a root [`vercel.json`](./vercel.json) for [Vercel Services](https://vercel.com/docs/services) — one project, one domain, frontend + FastAPI backend.
+
+**Import the repo** on Vercel with **Root Directory** set to `.` (repository root, not `frontend/`).
+
+| Route | Service |
+|-------|---------|
+| `/` | Next.js frontend |
+| `/api/backend/*` | FastAPI backend (rewritten to `/api/v1/*` internally) |
+
+**Frontend env vars** (Vercel → Settings → Environment Variables):
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=your_key
+NEXT_PUBLIC_API_URL=/api/backend
+NEXT_PUBLIC_APP_URL=https://your-app.vercel.app
+```
+
+**Backend env vars** — add all keys from `backend/.env.example` (Supabase, Qdrant, Gemini, Groq, etc.):
+
+```env
+ENVIRONMENT=production
+ENABLE_EMBEDDED_WORKER=false
+SKIP_WARMUP=true
+API__CORS_ORIGINS=["https://your-app.vercel.app"]
+```
+
+> **Note:** The backend is heavy (LlamaIndex, embeddings, document parsing). If the Python build exceeds Vercel's size limit, deploy the backend separately on [Railway](https://railway.app) or [Coolify](https://coolify.io) and set `NEXT_PUBLIC_API_URL` to that URL instead.
+
+### Split deployment (recommended for production)
+
 | Component | Platform | Notes |
 |-----------|----------|-------|
 | **Frontend** | [Vercel](https://vercel.com) | Set `NEXT_PUBLIC_SUPABASE_*` and `NEXT_PUBLIC_API_URL` |
